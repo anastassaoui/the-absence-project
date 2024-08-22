@@ -10,13 +10,19 @@ def index():
 
 
 
+from flask import render_template, request, redirect, url_for
+
 @app.route('/signin', methods=['GET', 'POST'])
 def signin():
     if request.method == 'POST':
         email = request.form.get('email')
         password = request.form.get('password')
-        return 'Hello {} with the password {}'.format(email, password)
+        
+
+        return redirect(url_for('student'))
+
     return render_template('signin.html')
+
 
 
 @app.route('/signup', methods=['GET', 'POST'])
@@ -26,7 +32,9 @@ def signup():
         last_name = request.form.get('last_name')
         email = request.form.get('email')
         password = request.form.get('password')
-        return 'Registered {} {} with the email {} and password {}'.format(first_name, last_name, email, password)
+
+        
+        return redirect(url_for('signedup'))
     return render_template('signup.html')
 
 
@@ -42,6 +50,7 @@ def contactus():
 def student():
     return render_template('student.html')
 
+
 @app.route('/scan')
 def scan():
     return render_template('scan.html')
@@ -53,6 +62,28 @@ def scanned():
 @app.route('/historystudent')
 def historystudent():
     return render_template('historystudent.html')
+
+@app.route('/historyteacher')
+def historyteacher():
+    return render_template('historyteacher.html')
+
+@app.route('/teacher')
+def teacher():
+    return render_template('teacher.html')
+
+@app.route('/activate')
+def activate():
+    return render_template('activate.html')
+
+
+
+@app.route('/kill')
+def kill():
+    return render_template('kill.html')
+
+@app.route('/signedup')
+def signedup():
+    return render_template('signedup.html')
 
     
 
